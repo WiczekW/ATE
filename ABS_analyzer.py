@@ -1,7 +1,7 @@
 # masa przeliczana z masy przyjmowanej przez plik ABS
 def mass_to_dict(name_of_abs):
     # zaczytanie pliku abs
-    full_name_of_abs = str(name_of_abs) + '.abs'
+    full_name_of_abs = str(name_of_abs)
 
     # stworzenie słownika, który będzie uzupełniony i zwrócony [kg]
 
@@ -63,5 +63,5 @@ def mass_to_dict(name_of_abs):
             # dodawanie do końcowego słownika
             mass_final[diameter_of_bar] += mass_of_bar
             mass_final['total'] += mass_of_bar
-
+            print('polecenie wykonano')
     return mass_final
