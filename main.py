@@ -1,14 +1,49 @@
 import tkinter as tk
 import glob
-from global_data import *
+import os
+from tabulate import tabulate
 from tkinter import filedialog
-from search_abs_in_folder import search_abs
-from view_result import view_result
+from ABS_analyzer import mass_to_dict
+
+# console settings
+cmd = 'mode 170, 100'
+os.system(cmd)
+
+
+# main data
+
+abs_to_analyze = []
+result_update = []
 
 # main window
 root = tk.Tk()
 root.title('Simple ABS calculator')
 root.geometry('300x25')
+
+# functions
+
+
+# segregating results
+def view_result():
+    global abs_to_analyze, result_update
+    for i in abs_to_analyze:
+        result_update.append(mass_to_dict(str(i)))
+    print(tabulate(result_update, headers="keys"))
+    abs_to_analyze.clear()
+    result_update.clear()
+    pass
+
+
+# searching abs files in folder
+def search_abs():
+    global abs_to_analyze
+    abs_to_analyze.clear()
+    folder_selected = filedialog.askdirectory()
+    key_abs_files = folder_selected + '/*.abs'
+    key_abs_files = key_abs_files.replace('/', '\\')
+    abs_list = glob.glob(key_abs_files)
+    abs_to_analyze = abs_list
+    pass
 
 
 # widget definition
@@ -18,5 +53,5 @@ button_two = tk.Button(root, text='Calculate', command=view_result)
 # widget location
 button_one.grid(column=1, row=1)
 button_two.grid(column=2, row=1)
-print(abs_to_analyze)
+
 root.mainloop()

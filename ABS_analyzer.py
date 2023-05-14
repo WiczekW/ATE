@@ -63,5 +63,5 @@ def mass_to_dict(name_of_abs):
             # dodawanie do końcowego słownika
             mass_final[diameter_of_bar] += mass_of_bar
             mass_final['total'] += mass_of_bar
-            print('polecenie wykonano')
+
     return mass_final
