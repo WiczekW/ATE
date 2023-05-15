@@ -28,6 +28,14 @@ def view_result():
     global abs_to_analyze, result_update
     for i in abs_to_analyze:
         result_update.append(mass_to_dict(str(i)))
+
+    for i in result_update:
+        path_to_abs = i['name']
+        path_to_folder = i['name']
+        while path_to_folder[-1] != '\\':
+            path_to_folder = path_to_folder[:-1]
+        path_to_abs = path_to_abs.replace(path_to_folder, '')
+        i['name'] = path_to_abs
     print(tabulate(result_update, headers="keys"))
     abs_to_analyze.clear()
     result_update.clear()
